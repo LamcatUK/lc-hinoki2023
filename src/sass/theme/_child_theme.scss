@@ -7,6 +7,18 @@
 @import "blocks/blocks";
 
 
+main {
+    margin-top:  var(--h-top);
+}
+@media (min-width:992px) {
+    main {
+        margin-top: var(--h-top-lg);
+    }
+    .sticky-offset {
+        top:  var(--h-top-lg);
+    }
+}
+
 a,
 a.noline {
     text-decoration: none;
@@ -14,8 +26,15 @@ a.noline {
 a.anchor {
     display: block;
     position: relative;
-    top: calc( var(--h-top) * -1);
+    top: calc( var(--h-top-lg) * -1);
     visibility: hidden;
+}
+
+section a {
+    font-weight: 600;
+}
+section.secondary a {
+    font-weight: 300;
 }
 
 @media (min-width:992px) {
@@ -35,15 +54,16 @@ a.anchor {
 
 ul:not([class]) {
     list-style: none; /* Remove default bullets */
+    padding-left: 1rem;
     li::before {
-        content: "\f138";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+        content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
         font-family: "Font Awesome 6 Free";
         color: var(--col-primary); /* Change the color */
         font-weight: 600; /* If you want it to be bold */
         font-size: var(--fs-200);
         display: inline-block; /* Needed to add space between the bullet and the text */
-        width: 1.5rem; /* Also needed for space (tweak if needed) */
-        margin-left: -1.5rem; /* Also needed for space (tweak if needed) */
+        width: 1rem; /* Also needed for space (tweak if needed) */
+        margin-left: -1rem; /* Also needed for space (tweak if needed) */
     }
     li {
         margin-bottom: 0.5rem;
@@ -54,6 +74,7 @@ ul:not([class]) {
     margin-inline-start: 1.5rem;
 }
 
+/*
 :not(.share-icons,.social-icons,figure,.accreditations__badge) > a[target="_blank"]:not(.btn)::after{
     content: "\f08e";
     font-family: "Font Awesome 6 Free";
@@ -61,11 +82,9 @@ ul:not([class]) {
     margin-left: 0.5rem;
     display: inline-block;
 }
+*/
 
 
-main {
-    margin-top: var(--h-top);
-}
 
 .container-xl .container-xl {
     padding-inline: 0;

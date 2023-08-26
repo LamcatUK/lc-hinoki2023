@@ -1,0 +1,16 @@
+.card_grid {
+    .h3::after {
+        content: "";
+        display: block;
+        width: 4rem;
+        margin: 1rem 0;
+        border-top: 2px solid $miruiro;
+    }
+    &__image {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}

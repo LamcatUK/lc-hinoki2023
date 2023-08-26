@@ -1,29 +1,82 @@
-.bg--primary {
-    background-color: var(--col-primary-400);
-}
-.bg--grey {
-    background-color: var(--col-grey);
+
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.35);
+    z-index: -1;
 }
 
-.bg--grad {
-    background-color: var(--col-primary-400);
-    background: linear-gradient(45deg, var(--col-primary-400) 50%, var(--col-secondary-400) 100%);
-    color: white;
+.overlay--grad {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.35);
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.7) 20%, rgba(0,0,0,0) 65%);
+    z-index: -1;
+}
+
+
+.washi {
+    background-color: var(--col-grey-400);
+    padding: 2rem 2rem 0 2rem;
     position: relative;
-    isolation: isolate;
-    &::before {
-        position: absolute;
+    top: -1rem;
+    &::after {
         content: "";
-        bottom: 0;
-        left: 1rem;
-        height: 60%;
-        max-width: 90vw;
-        aspect-ratio: 10 / 6;
-        opacity: 0.2;
-        background-image: url(../img/greensward-icon--wo.svg);
-        background-size: contain;
-        background-position: bottom left;
+        background-image: url(../img/tear-bottom.svg);
+        background-size: cover;
         background-repeat: no-repeat;
-        z-index: -1;
+        background-position: bottom center;
+        height: 2rem;
+        bottom: -2rem;
+        width: 100%;
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
     }
+    .content {
+        padding-bottom: 0.5rem;
+    }
+}
+
+.sep--miruiro {
+    width: 2rem;
+    border: none;
+    border-top: 2px solid var(--col-green-400);
+    opacity: 1;
+    margin: 2rem auto;
+    position: relative;
+    margin: 2rem 0 4rem 0;
+    &::after {
+        content: "";
+        width: 2rem;
+        height: 2rem;
+        border-top: 2px solid var(--col-green-400);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+.sep--yellow--left {
+    width: 2rem;
+    border: none;
+    // border-top: 2px solid $ra-yellow;
+    opacity: 1;
+    margin: 2rem auto 2rem 0;
+    // position: relative;
+    // margin: 2rem 0 4rem 0;
+    // &::after {
+    //     content: "";
+    //     width: 2rem;
+    //     height: 2rem;
+    //     border-top: 2px solid $ra-yellow;
+    //     position: absolute;
+    //     left: 0;
+    // }
 }

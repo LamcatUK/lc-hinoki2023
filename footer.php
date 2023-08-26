@@ -11,66 +11,85 @@
 defined('ABSPATH') || exit;
 
 ?>
-<div id="footer-top"></div>
-<footer class="footer pt-5">
-    <div class="container-xl" id="footer-content">
-        <div class="row pb-4">
-            <div class="col-md-6 col-lg-4 mb-3">
-                <img src="<?=get_stylesheet_directory_uri()?>/img/greensward-logo--wo.svg"
-                    alt="">
-                <p class="fs-200" style="max-width:44ch;text-wrap:balance">Experts in sports facility management across
-                    the South West since 2012</p>
+<div class="footer pb-3">
+    <div class="container pt-5">
+        <div class="row mb-4">
+            <div class="col-lg-3 mb-4 text-center text-lg-start mb-lg-2">
+                <a href="/"><img
+                        src="<?=get_stylesheet_directory_uri()?>/img/hinoki-logo.svg"></a>
             </div>
-            <div class="col-md-6 col-lg-3 mb-3">
-                <strong>Contact Us</strong>
-                <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fa-solid fa-phone"></i></span>
-                        <?=do_shortcode('[contact_phone]')?>
-                    </li>
-                    <?php
-                    if (get_field('phone_2', 'options')) {
-                        ?>
-                    <li><span class="fa-li"><i class="fa-solid fa-phone"></i></span>
-                        <?=do_shortcode('[contact_phone2]')?>
-                    </li>
-                    <?php
-                    }
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
+                <?=wp_nav_menu(array('theme_location' => 'footer_menu1'))?>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
+                <?=wp_nav_menu(array('theme_location' => 'footer_menu2'))?>
+            </div>
+            <div
+                class="col-md-4 col-lg-3 mb-2 d-flex flex-column align-items-center align-items-md-start justify-content-between">
+                <?php
+                if (get_field('contact_phone', 'options')) {
+                    ?>
+                <div class="mb-2"><i class="fa-solid fa-phone"></i>
+                    <?=do_shortcode('[contact_phone]')?>
+                </div>
+                <?php
+                }
 ?>
-                    <li><span class="fa-li"><i class="fa-solid fa-envelope"></i></span>
-                        <?=do_shortcode('[contact_email]')?>
-                    </li>
-                    <li><span class="fa-li"><i class="fa-solid fa-map-marker-alt"></i></span>
-                        <?=get_field('contact_address', 'options')?>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm-6 col-lg-2 mb-2">
-                <strong>Useful Links</strong>
-                <?php wp_nav_menu(array('theme_location' => 'footer_menu2')); ?>
-            </div>
-            <div class="col-sm-6 col-lg-3 mb-2">
-                <strong>Services</strong>
-                <?php wp_nav_menu(array('theme_location' => 'footer_menu1')); ?>
+                <div class="mb-2"><i class="fa-regular fa-envelope"></i>
+                    <?=do_shortcode('[contact_email]')?>
+                </div>
+                <div class="social-icons">
+                    <?php
+    $social = get_field('social', 'options');
+if ($social['twitter_url'] ?? null) {
+    ?>
+                    <a href="<?=$social['twitter_url']?>"
+                        rel="noopener" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <?php
+}
+if ($social['facebook_url'] ?? null) {
+    ?>
+                    <a href="<?=$social['facebook_url']?>"
+                        rel="noopener" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <?php
+}
+if ($social['linkedin_url'] ?? null) {
+    ?>
+                    <a href="<?=$social['linkedin_url']?>"
+                        rel="noopener" target="_blank" aria-label="LinkedIn"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <?php
+}
+if ($social['instagram_url'] ?? null) {
+    ?>
+                    <a href="<?=$social['instagram_url']?>"
+                        rel="noopener" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <?php
+}
+?>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
-<div class="colophon">
-    <div class="container-xl py-2">
-        <div class="row">
-            <div class="col-md-8 mb-2 mb-md-0">
-                &copy; <?=date('Y')?> GreenSward
-                Sports Consultancy Ltd. Registered in England No. 07958925
-            </div>
-            <div class="col-md-4 text-md-end">
-                <a href="/privacy-policy/">Privacy Policy</a> | <a href="/cookie-policy/">Cookie Policy</a>
-                | Site by <a href="https://www.lamcat.co.uk/" rel="nofollow noopener" target="_blank" class="lc"
-                    title="Site by Lamcat">Lamcat</a>
+        <div class="colophon">
+            <div class="row">
+                <div class="text-center text-md-start col-md-4 mb-2">
+                    &copy; <?=date('Y')?> HINOKI
+                    Forest Bathing
+                </div>
+                <div class="col-md-4 text-center mb-2">
+                    <a href="/terms-conditions/">Terms &amp; Conditions</a> |
+                    <a href="/privacy-policy/">Privacy Policy</a> |
+                    <a href="/cookie-policy/">Cookie Policy</a>
+                </div>
+                <div class="col-md-4 text-center text-md-end mb-2">
+                    Site by <a href="https://www.lamcat.co.uk/" target="_blank" rel="noopener">Lamcat</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </div><!-- #page -->
+<!-- <div class="scroll-button"></div> -->
 <?php wp_footer();
 if (get_field('gtm_property', 'options')) {
     ?>

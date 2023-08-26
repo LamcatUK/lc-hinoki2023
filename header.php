@@ -19,14 +19,8 @@ session_start();
         charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1">
     <link rel="preload"
-        href="<?=get_stylesheet_directory_uri()?>/fonts/poppins-v20-latin-600.woff2"
-        as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload"
-        href="<?=get_stylesheet_directory_uri()?>/fonts/poppins-v20-latin-500.woff2"
-        as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload"
-        href="<?=get_stylesheet_directory_uri()?>/fonts/poppins-v20-latin-regular.woff2"
-        as="font" type="font/woff2" crossorigin="anonymous">
+        href="<?=get_stylesheet_directory_uri()?>/fonts/icomoon.woff"
+        as="font" type="font/woff" crossorigin="anonymous">
     <?php
 if (get_field('ga_property', 'options')) {
     ?>
@@ -78,69 +72,111 @@ if (get_field('bing_site_verification', 'options')) {
     echo '<meta name="msvalidate.01" content="' . get_field('bing_site_verification', 'options') . '" />';
 }
 
-wp_head();
-?>
-
+if (is_front_page()) {
+    ?>
     <script type="application/ld+json">
         {
             "@context": "http://schema.org",
             "@type": "Organization",
-            "name": "GreenSward Sports Consultancy Limited",
-            "url": "https://www.greenswardsports.co.uk/",
-            "logo": "https://www.greenswardsports.co.uk/wp-content/theme/lc-hinoki2023/img/greensward-logo.jpg",
-            "description": "Sportsground and landscape design and maintenance",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Monkton Combe Mill, Monkton Combe"
-                "addressRegion": "Bath",
-                "postalCode": "BA2 7HD",
-                "addressCountry": "UK"
-            },
-            "telephone": "+44 (0) 7972 630518",
-            "email": "info@greenswardsports.co.uk"
+            "name": "HINOKI Forest Bathing",
+            "url": "https://www.hinokiforestbathing.co.uk/",
+            "sameAs":
+            <?php
+        $social = array();
+    $s = get_field('social', 'options');
+    if ($s['facebook_url']) {
+        $social[] = $s['facebook_url'];
+    }
+    if ($s['instagram_url']) {
+        $social[] = $s['instagram_url'];
+    }
+    if ($s['linkedin_url']) {
+        $social[] = $s['linkedin_url'];
+    }
+    echo json_encode($social);
+    ?>
+            ,
+            "logo": "<?=get_field('og_image', 'options')?>",
+            "contactPoint": [{
+                "@type": "ContactPoint",
+                "telephone": "<?=parse_phone(get_field('contact_phone', 'options'))?>",
+                "contactType": "enquiries"
+            }]
         }
     </script>
-    <!-- ,
-    "sameAs": [
-        "https://twitter.com/",
-        "https://www.facebook.com/",
-        "https://www.linkedin.com/company/"
-    ] -->
+    <?php
+}
+    wp_head();
+?>
 
 </head>
 
-<body <?php body_class(); ?>
-    <?php understrap_body_attributes(); ?>>
-    <?php
-do_action('wp_body_open');
+<body <?php body_class(); ?>>
+    <?php do_action('wp_body_open'); ?>
+    <header id="header" class="pt-3 fixed-top">
+        <div class="container-xl px-xl-3">
+            <div class="row mb-3">
+                <div class="d-none d-lg-block col-lg-4 my-auto">
+                    <div class="social-icons">
+                        <?php
+                    $social = get_field('social', 'options');
+if ($social['twitter_url'] ?? null) {
+    ?>
+                        <a href="<?=$social['twitter_url']?>"
+                            rel="noopener" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <?php
+}
+if ($social['facebook_url'] ?? null) {
+    ?>
+                        <a href="<?=$social['facebook_url']?>"
+                            rel="noopener" target="_blank" aria-label="Facebook"><i
+                                class="fa-brands fa-facebook-f"></i></a>
+                        <?php
+}
+if ($social['linkedin_url'] ?? null) {
+    ?>
+                        <a href="<?=$social['linkedin_url']?>"
+                            rel="noopener" target="_blank" aria-label="LinkedIn"><i
+                                class="fa-brands fa-linkedin-in"></i></a>
+                        <?php
+}
+if ($social['instagram_url'] ?? null) {
+    ?>
+                        <a href="<?=$social['instagram_url']?>"
+                            rel="noopener" target="_blank" aria-label="Instagram"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <?php
+}
 ?>
-    <header id="wrapper-navbar" class="fixed-top">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-xl py-2 nav-top align-items-end">
-                <a href="/" class="text-lg-center logo-container" aria-label="PPI Homepage"></a>
-                <div class="button-container d-lg-none">
-                    <button class="navbar-toggler mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
-                        aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-bars"></i>
-                    </button>
+                    </div>
                 </div>
-
-                <div class="collapse navbar-collapse" id="navbar">
-                    <?php
-                    wp_nav_menu(
-    array(
-                                                'theme_location'  => 'primary_nav',
-                                                'container_class' => 'w-100',
-                                                // 'container_id'    => 'primaryNav',
-                                                'menu_class'      => 'navbar-nav justify-content-start justify-content-lg-around w-100',
-                                                'fallback_cb'     => '',
-                                                'menu_id'         => 'navbarr',
-                                                'depth'           => 3,
-                                                'walker'          => new Understrap_WP_Bootstrap_Navwalker()
-                                                )
-);
-?>
+                <div class="col-lg-4 d-flex justify-content-center align-items-between">
+                    <a href="/" class="navbar-brand" rel="home" aria-label="hinoki"></a>
+                    <button class="d-lg-none navbar-toggler input-button" id="navToggle" data-bs-toggle="collapse"
+                        data-bs-target="#primaryNav" type="button"><i class="fa-solid fa-bars"></i></button>
+                </div>
+                <div class="d-none d-lg-block col-lg-4 text-end my-auto">
+                    <a href="/book/" class="d-none d-lg-inline-block btn btn-outline">BOOK NOW</a>
                 </div>
             </div>
-        </nav>
+        </div>
+        <div id="wrapper-navbar" class="container-xl px-xl-0">
+            <nav id="main-nav" class="navbar navbar-expand-lg d-block p-0 mx-xl-3" aria-labelledby="main-nav-label">
+                <h2 id="main-nav-label" class="sr-only">Main Navigation</h2>
+                <?php
+                    wp_nav_menu(
+                        array(
+'theme_location'  => 'primary_nav',
+'container_class' => 'collapse navbar-collapse flex-column justify-content-between w-100 px-4 px-lg-0 py-0',
+'container_id'    => 'primaryNav',
+'menu_class'      => 'navbar-nav w-100 justify-content-between align-items-center',
+'fallback_cb'     => '',
+'menu_id'         => 'main-menu',
+'depth'           => 2,
+'walker'          => new Understrap_WP_Bootstrap_Navwalker(),
+                                                                                                        )
+                    );
+?>
+            </nav>
+        </div>
     </header>

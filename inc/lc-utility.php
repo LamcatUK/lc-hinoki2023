@@ -275,6 +275,39 @@ function lc_list($field)
     return ob_get_clean();
 }
 
+function lc_lines_to_div($field)
+{
+    ob_start();
+    $field = strip_tags($field, '<br />');
+    $bullets = preg_split("/\r\n|\n|\r/", $field);
+    foreach ($bullets as $b) {
+        if ($b == '') {
+            continue;
+        }
+        ?>
+<div><?=$b?></div>
+<?php
+    }
+    return ob_get_clean();
+}
+
+function lc_lines_to_list($field)
+{
+    ob_start();
+    $field = strip_tags($field, '<br />');
+    $bullets = preg_split("/\r\n|\n|\r/", $field);
+    foreach ($bullets as $b) {
+        if ($b == '') {
+            continue;
+        }
+        ?>
+<li><?=$b?></li>
+<?php
+    }
+    return ob_get_clean();
+}
+
+
 /**
  * formatBytes
  *

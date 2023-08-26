@@ -1,0 +1,19 @@
+.secondary {
+    position: sticky;
+    z-index: 999;
+    background: white;
+    .container-xl {
+        border-top: 1px solid var(--col-green-400-tx);
+        border-bottom: 1px solid var(--col-green-400-tx);
+        a {
+            margin: 0 1rem;
+            text-transform: uppercase;
+            letter-spacing: #{(50/1000)}em;
+            transition: 0.3s ease;
+            &:hover {
+                text-decoration: none;
+                color: var(--col-green-400);
+            }
+        }
+    }
+}

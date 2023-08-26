@@ -1,29 +1,73 @@
 .btn {
-    transition: 
-        background-color var(--transition),
-        color var(--transition);
-    font-weight: var(--fw-600);
-    font-size: var(--fs-400);
+    border-radius: 0;
+}
+.btn-primary {
+    border: 1px solid var(--col-yellow-400);
+    background-color: var(--col-yellow-400);
+    color: var(--col-black-400);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: #{(50/1000)}em;
+    transition: all 0.3s ease;
+    min-width: 195px;
+    padding: 0.5rem;
+    &:hover {
+        border: 1px solid var(--col-yellow-400);
+        background-color: var(--col-black-400);
+        color: var(--col-yellow-400);
+    }
+    &:focus {
+        border: 1px solid var(--col-black-400);
+        background-color: var(--col-yellow-400);
+        color: var(--col-black-400);
+        box-shadow: none;
+    }
 }
 .btn-secondary {
-    color: white;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    min-width: 140px;
 }
-.btn-highlight {
-    background-color: var(--col-highlight-400);
-    color: white;
-    &:hover {
-        border-color: var(--col-highlight-400);
-        color: var(--col-highlight-400);
-        background-color: white;
-    }
-}
+
 .btn-outline {
-    border: 1px solid var(--col-grey-900);
+    border: 1px solid var(--col-black-400);
+    color: var(--col-black-400);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: #{(50/1000)}em;
+    min-width: 195px;
+    padding: 0.5rem;
     &:hover {
-        border: 1px solid var(--col-grey-900);
-        color: white;
-        background-color: var(--col-grey-900);
+        border-color: var(--col-green-400);
+        color: var(--col-green-400);
     }
 }
 
+.btn-large {
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+}
 
+.btn-next {
+    @extend .btn-outline;
+    &::after {
+        content: "\f105";
+        font-family: 'font awesome 6 free';
+        margin-left: 0.5rem;
+    }
+}
+
+.btn-previous {
+    @extend .btn-outline;
+    &::before {
+        content: "\f104";
+        font-family: 'font awesome 6 free';
+        margin-right: 0.5rem;
+    }
+
+    &::after {
+        content: "";
+    }
+}

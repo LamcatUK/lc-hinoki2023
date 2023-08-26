@@ -1,0 +1,11 @@
+.cta_block {
+    .row {
+        margin: 0;
+        @media (min-width:1140px) {
+            margin: auto;
+        }
+        background-color: var(--col-grey-400);
+        border: 1px solid var(--col-grey-400-tx);
+        padding: 2rem;
+    }
+}
