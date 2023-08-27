@@ -22247,6 +22247,39 @@ a.back:hover {
   content: '"';
 }
 
+.sessions_nav__grid {
+  display: flex;
+  flex-wrap: wrap;
+  -moz-column-gap: 1rem;
+  column-gap: 1rem;
+  row-gap: 3rem;
+  justify-content: center;
+}
+.sessions_nav__card {
+  display: block;
+  padding: 1rem;
+  padding-bottom: 0;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.sessions_nav__card:hover {
+  transform: translateY(-3px);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+.sessions_nav__content {
+  display: grid;
+  grid-template-columns: 100px auto;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.sessions_nav img {
+  width: 100%;
+  max-width: 100px;
+}
+.sessions_nav h2, .sessions_nav .h2 {
+  font-size: 1.2rem;
+  align-self: center;
+}
+
 :root {
   font-size: 20px;
 }

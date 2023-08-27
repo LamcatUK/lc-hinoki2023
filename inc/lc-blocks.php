@@ -172,6 +172,16 @@ function acf_blocks()
             'mode'	=> 'edit',
             'supports' => array('mode' => false),
         ));
+        acf_register_block(array(
+            'name'				=> 'LC Sessions Nav',
+            'title'				=> __('LC Sessions Nav'),
+            'description'		=> __(''),
+            'render_template'	=> 'page-templates/blocks/sessions_nav.php',
+            'category'			=> 'layout',
+            'icon'				=> 'excerpt-view',
+            'mode'	=> 'edit',
+            'supports' => array('mode' => false),
+        ));
         /*
         acf_register_block(array(
             'name'				=> 'LC Text Image',
