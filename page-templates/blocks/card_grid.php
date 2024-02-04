@@ -8,24 +8,56 @@
                 // $onclick = get_sub_field('sample') ? 'onclick="play(\'' . get_sub_field('title') . '\')"' : '';
                 ?>
             <div class="col-md-6 col-lg-4 mb-5">
-                <div class="card_grid__image mb-3" style="background-image:url(<?=wp_get_attachment_image_url( get_sub_field('image'), 'large' )?>)" title="<?=get_sub_field('title')?>"></div>
-                <div class="h3"><?=get_sub_field('title')?></div>
-                <div><?=get_sub_field('content')?></div>
+                <div class="card_grid__image mb-3"
+                    style="background-image:url(<?=wp_get_attachment_image_url(get_sub_field('image'), 'large')?>)"
+                    title="<?=get_sub_field('title')?>">
+                </div>
+                <div class="h3">
+                    <?=get_sub_field('title')?>
+                </div>
+                <div>
+                    <?=get_sub_field('content')?>
+                </div>
                 <?php
                 if (get_sub_field('sample')) {
                     ?>
                 <div class="text-center mt-2">
-                    <a class="btn btn-outline" onclick="play('<?=$n?>')">Listen <i class="icon-play-circle b-play" id="play<?=$n?>"></i></a>
-                    <audio id="audio<?=$n?>" src="<?=get_sub_field('sample')?>"></audio>
+                    <a class="btn btn-outline"
+                        onclick="play('<?=$n?>')">Listen <i
+                            class="icon-play-circle b-play"
+                            id="play<?=$n?>"></i></a>
+                    <audio id="audio<?=$n?>"
+                        src="<?=get_sub_field('sample')?>"></audio>
                 </div>
-                    <?php
+                <?php
                 }
                 ?>
             </div>
-                <?php
+            <?php
                 $n++;
             }
             ?>
         </div>
     </div>
 </section>
+<?php
+add_action('wp_footer', function () {
+    ?>
+<script>
+    function play(id) {
+        var audio = document.getElementById('audio' + id);
+        var playIcon = document.getElementById('play' + id);
+        if (audio.paused) {
+            audio.play();
+            playIcon.classList.remove('icon-play-circle');
+            playIcon.classList.add('icon-pause-circle');
+        } else {
+            audio.pause();
+            audio.currentTime = 0;
+            playIcon.classList.add('icon-play-circle');
+            playIcon.classList.remove('icon-pause-circle');
+        }
+    }
+</script>
+<?php
+});

@@ -1,6 +1,6 @@
 /*!
   * Understrap v1.2.0 (https://understrap.com)
-  * Copyright 2013-2023 The Understrap Authors (https://github.com/understrap/understrap/graphs/contributors)
+  * Copyright 2013-2024 The Understrap Authors (https://github.com/understrap/understrap/graphs/contributors)
   * Licensed under GPL-3.0 (undefined)
   */
 (function (global, factory) {
@@ -6746,8 +6746,6 @@
 	// Add your custom JS here.
 
 	AOS.init();
-	(function ($) {
-	})(jQuery);
 
 	exports.Alert = alert;
 	exports.Button = button;
