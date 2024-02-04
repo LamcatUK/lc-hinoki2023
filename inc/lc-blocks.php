@@ -182,6 +182,16 @@ function acf_blocks()
             'mode'	=> 'edit',
             'supports' => array('mode' => false),
         ));
+        acf_register_block(array(
+            'name'				=> 'LC Sessions Cards',
+            'title'				=> __('LC Sessions Cards'),
+            'description'		=> __(''),
+            'render_template'	=> 'page-templates/blocks/sessions_cards.php',
+            'category'			=> 'layout',
+            'icon'				=> 'excerpt-view',
+            'mode'	=> 'edit',
+            'supports' => array('mode' => false),
+        ));
         /*
         acf_register_block(array(
             'name'				=> 'LC Text Image',

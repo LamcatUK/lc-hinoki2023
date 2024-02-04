@@ -22283,6 +22283,49 @@ a.back:hover {
   align-self: center;
 }
 
+.sessions_cards__card {
+  display: block;
+  padding: 0;
+  isolation: isolate;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.sessions_cards__card:hover {
+  transform: translateY(-3px);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+.sessions_cards .washi::after {
+  bottom: -1rem;
+  z-index: -1;
+}
+.sessions_cards__cardimg {
+  display: block;
+  -o-object-fit: cover;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  width: 100%;
+  -o-object-position: center;
+  object-position: center;
+  margin-bottom: 0.5rem;
+}
+.sessions_cards__content {
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 60px auto;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.sessions_cards__content img {
+  width: 100%;
+  max-width: 60px;
+}
+.sessions_cards h3, .sessions_cards .h3 {
+  font-family: "Futura PT", sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  align-self: center;
+  text-transform: initial;
+}
+
 :root {
   font-size: 20px;
 }
