@@ -3,12 +3,12 @@
 function cb_register_post_types()
 {
     /**
-     * Post Type: Testimonials.
+     * Post Type: What's On
      */
 
     $labels = [
-       "name" => esc_html__("What's On", "lc-hinoki2023"),
-       "singular_name" => esc_html__("Event", "lc-hinoki2023"),
+        "name" => esc_html__("What's On", "lc-hinoki2023"),
+        "singular_name" => esc_html__("Event", "lc-hinoki2023"),
     ];
 
     $args = [
@@ -33,14 +33,14 @@ function cb_register_post_types()
         "can_export" => true,
         "rewrite" => false,
         "query_var" => true,
-        "supports" => [ "custom-fields" ],
+        "supports" => ["custom-fields"],
         "show_in_graphql" => false,
     ];
 
     register_post_type("whatson", $args);
 }
 
-add_action('init', 'cb_register_post_types');
+// add_action('init', 'cb_register_post_types');
 
 
 function set_custom_title($post_id)
@@ -69,8 +69,8 @@ add_filter('acf/save_post', 'set_custom_title', 5);
 function add_acf_columns($columns)
 {
     return array_merge($columns, array(
-      'start_date' => __('Start'),
-      'end_date' => __('End'),
+        'start_date' => __('Start'),
+        'end_date' => __('End'),
     ));
 }
 add_filter('manage_whatson_posts_columns', 'add_acf_columns');
