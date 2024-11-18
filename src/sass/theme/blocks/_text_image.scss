@@ -36,7 +36,12 @@
         right: 0;
     }
 
-    aspect-ratio: 8 / 3;
+    &.image--landscape {
+        aspect-ratio: 4 / 3;
+    }
+    &.image--portrait {
+        aspect-ratio: 3 / 4;
+    }
 
     @media (min-width:992px) {
         aspect-ratio: 4 / 3;
