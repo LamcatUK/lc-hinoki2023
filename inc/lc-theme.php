@@ -423,7 +423,7 @@ add_action(
             if (!nameEl.textContent.trim().startsWith('WAITLIST:')) return;
             var el = nameEl.parentElement;
             while (el && el !== document.body) {
-                var btnText = el.querySelector('.am-c-btn-prim-text');
+                var btnText = el.querySelector('.am-button__inner');
                 if (btnText) {
                     if (btnText.textContent !== 'WAITLIST') {
                         btnText.textContent = 'WAITLIST';
