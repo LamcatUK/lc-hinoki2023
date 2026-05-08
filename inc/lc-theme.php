@@ -419,13 +419,18 @@ add_action(
 <script>
 (function() {
     function updateWaitlistButtons() {
-        document.querySelectorAll('.am-ec').forEach(function(card) {
-            var nameEl = card.querySelector('.am-ec__info-name');
-            if (nameEl && nameEl.textContent.trim().startsWith('WAITLIST:')) {
-                var btnText = card.querySelector('.am-c-btn-prim-text');
-                if (btnText && btnText.textContent !== 'WAITLIST') {
-                    btnText.textContent = 'WAITLIST';
+        document.querySelectorAll('.am-ec__info-name').forEach(function(nameEl) {
+            if (!nameEl.textContent.trim().startsWith('WAITLIST:')) return;
+            var el = nameEl.parentElement;
+            while (el && el !== document.body) {
+                var btnText = el.querySelector('.am-c-btn-prim-text');
+                if (btnText) {
+                    if (btnText.textContent !== 'WAITLIST') {
+                        btnText.textContent = 'WAITLIST';
+                    }
+                    return;
                 }
+                el = el.parentElement;
             }
         });
     }
