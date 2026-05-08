@@ -411,4 +411,31 @@ function get_hero($postID)
     return;
 }
 
-?>
+
+add_action(
+	'wp_footer',
+	function () {
+		?>
+<script>
+(function() {
+    function updateWaitlistButtons() {
+        document.querySelectorAll('.am-ec').forEach(function(card) {
+            var nameEl = card.querySelector('.am-ec__info-name');
+            if (nameEl && nameEl.textContent.trim().startsWith('WAITLIST:')) {
+                var btnText = card.querySelector('.am-c-btn-prim-text');
+                if (btnText && btnText.textContent !== 'WAITLIST') {
+                    btnText.textContent = 'WAITLIST';
+                }
+            }
+        });
+    }
+    var observer = new MutationObserver(updateWaitlistButtons);
+    document.addEventListener('DOMContentLoaded', function() {
+        observer.observe(document.body, { childList: true, subtree: true });
+        updateWaitlistButtons();
+    });
+})();
+</script>
+		<?php
+	}
+);
