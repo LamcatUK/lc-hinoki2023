@@ -412,6 +412,8 @@ function get_hero($postID)
 }
 
 
+// Change 'Book Now' to 'Waitlist' for Amelia events with 'WAITLIST:' prefix, in both event list and popup.
+
 add_action(
 	'wp_footer',
 	function () {
@@ -451,3 +453,28 @@ add_action(
 		<?php
 	}
 );
+
+// Change email content for Amelia events with 'WAITLIST:' prefix.
+
+add_filter('amelia_manipulate_email_data', function($emailData) {
+    $reservation = $emailData['data']['reservation'] ?? [];
+    $eventName   = $reservation['name'] ?? '';
+
+    if (strpos($eventName, 'WAITLIST:') !== 0) {
+        return $emailData;
+    }
+
+    $cleanName     = trim(substr($eventName, strlen('WAITLIST:')));
+    $startRaw      = $reservation['periods'][0]['periodStart'] ?? '';
+    $startFormatted = $startRaw
+        ? date_i18n(get_option('date_format') . ' ' . get_option('time_format'), strtotime($startRaw))
+        : '';
+
+    $emailData['subject'] = 'Waitlist confirmation: ' . $cleanName;
+    $emailData['body']    = '<p>Thank you for placing your name on the waitlist for the <strong>'
+        . esc_html($cleanName) . '</strong> event'
+        . ($startFormatted ? ' on ' . esc_html($startFormatted) : '')
+        . '. If a place becomes available, you will be contacted.</p>';
+
+    return $emailData;
+});
