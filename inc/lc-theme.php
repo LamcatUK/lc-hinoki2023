@@ -421,16 +421,23 @@ add_action(
     function updateWaitlistButtons() {
         document.querySelectorAll('.am-ec__info-name').forEach(function(nameEl) {
             if (!nameEl.textContent.trim().startsWith('WAITLIST:')) return;
-            var el = nameEl.parentElement;
-            while (el && el !== document.body) {
-                var btnText = el.querySelector('.am-button--primary .am-button__inner');
-                if (btnText) {
-                    if (btnText.textContent !== 'WAITLIST') {
-                        btnText.textContent = 'WAITLIST';
-                    }
-                    return;
+
+            // Case 1: event list card — button is inside .am-ec__actions-btn
+            var card = nameEl.closest('.am-ec');
+            if (card) {
+                var cardBtn = card.querySelector('.am-ec__actions-btn .am-button__inner');
+                if (cardBtn && cardBtn.textContent !== 'WAITLIST') {
+                    cardBtn.textContent = 'WAITLIST';
                 }
-                el = el.parentElement;
+            }
+
+            // Case 2: popup — button is in .am-elf__footer, sibling of .am-eli
+            var container = nameEl.closest('#amelia-container');
+            if (container) {
+                var footerBtn = container.querySelector('.am-elf__footer .am-button--primary .am-button__inner');
+                if (footerBtn && footerBtn.textContent !== 'WAITLIST') {
+                    footerBtn.textContent = 'WAITLIST';
+                }
             }
         });
     }
