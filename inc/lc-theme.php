@@ -431,6 +431,10 @@ add_action(
                 if (cardBtn && cardBtn.textContent !== 'WAITLIST') {
                     cardBtn.textContent = 'WAITLIST';
                 }
+                var priceEl = card.querySelector('.am-ec__info-price');
+                if (priceEl) priceEl.style.display = 'none';
+                var actionsPriceEl = card.querySelector('.am-ec__actions-price');
+                if (actionsPriceEl) actionsPriceEl.style.display = 'none';
             }
 
             // Case 2: popup — button is in .am-elf__footer, sibling of .am-eli
@@ -440,6 +444,9 @@ add_action(
                 if (footerBtn && footerBtn.textContent !== 'WAITLIST') {
                     footerBtn.textContent = 'WAITLIST';
                 }
+                container.querySelectorAll('.am-ec__info-price, .am-ec__actions-price').forEach(function(el) {
+                    el.style.display = 'none';
+                });
             }
         });
     }
